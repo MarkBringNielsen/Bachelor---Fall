@@ -13,6 +13,10 @@
         {"day" : "Thursday", "startTime" : "16:45", "endTime" : "22:00", "location" : "Location #1", "employee" : null},
         {"day" : "Thursday", "startTime" : "16:45", "endTime" : "22:30", "location" : "Location #1", "employee" : null},
         {"day" : "Thursday", "startTime" : "17:30", "endTime" : "22:00", "location" : "Location #1", "employee" : null}
+    ],
+
+    "employees" : [
+        
     ]
 
 }
