@@ -1,10 +1,18 @@
 import json
 
+def load():
+    with open('smaller_schedule.json') as data:
+        data = json.load(data)
 
-with open('schedule.json') as data:
-    data = json.load(data)
-    shifts = data['shifts']
-    employees = data['employees']
 
-    print(shifts)
+
+
+        
+
+
+
+        shifts = data['shifts']
+        employees = data['employees']
+
+        return shifts, employees
 

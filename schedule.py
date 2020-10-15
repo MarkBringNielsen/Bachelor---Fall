@@ -3,6 +3,7 @@ class schedule():
 
     def __init__(self):
         super.__init__()
+        
 
 
 class genetic_schedule():
