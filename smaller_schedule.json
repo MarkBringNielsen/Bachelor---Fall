@@ -1,0 +1,225 @@
+{
+    "shifts": [
+        {
+            "day": "Monday",
+            "startTime": "16:15",
+            "endTime": "22:00",
+            "location": "Location #1",
+            "employee": null
+        },
+        {
+            "day": "Monday",
+            "startTime": "17:00",
+            "endTime": "22:00",
+            "location": "Location #1",
+            "employee": null
+        },
+        {
+            "day": "Monday",
+            "startTime": "18:00",
+            "endTime": "22:30",
+            "location": "Location #1",
+            "employee": null
+        },
+        {
+            "day": "Tuesday",
+            "startTime": "16:15",
+            "endTime": "22:00",
+            "location": "Location #1",
+            "employee": null
+        },
+        {
+            "day": "Tuesday",
+            "startTime": "17:00",
+            "endTime": "22:00",
+            "location": "Location #1",
+            "employee": null
+        },
+        {
+            "day": "Tuesday",
+            "startTime": "18:00",
+            "endTime": "22:30",
+            "location": "Location #1",
+            "employee": null
+        },
+        {
+            "day": "Wednesday",
+            "startTime": "16:15",
+            "endTime": "22:00",
+            "location": "Location #1",
+            "employee": null
+        },
+        {
+            "day": "Wednesday",
+            "startTime": "17:00",
+            "endTime": "22:00",
+            "location": "Location #1",
+            "employee": null
+        },
+        {
+            "day": "Wednesday",
+            "startTime": "18:00",
+            "endTime": "22:30",
+            "location": "Location #1",
+            "employee": null
+        }
+    ],
+    "employees": [
+        {
+            "cpr": "1233445",
+            "name": "E1",
+            "min_hours": 0,
+            "max_hours": 40,
+            "locations": [
+                "Location #1"
+            ],
+            "time_constraint": {
+                "Monday": {
+                    "Earliest": null,
+                    "Latest": "22:00:00"
+                },
+                "Tuesday": {
+                    "Earliest": "18:00:00",
+                    "Latest": null
+                },
+                "Wednesday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Thursday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Friday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Saturday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Sunday": {
+                    "Earliest": null,
+                    "Latest": null
+                }
+            }
+        },
+        {
+            "cpr": "12465445",
+            "name": "E2",
+            "min_hours": 0,
+            "max_hours": 40,
+            "locations": [
+                "Location #1"
+            ],
+            "time_constraint": {
+                "Monday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Tuesday": {
+                    "Earliest": "17:00:00",
+                    "Latest": "22:00:00"
+                },
+                "Wednesday": {
+                    "Earliest": null,
+                    "Latest": "17:00:00"
+                },
+                "Thursday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Friday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Saturday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Sunday": {
+                    "Earliest": null,
+                    "Latest": null
+                }
+            }
+        },
+        {
+            "cpr": "64651",
+            "name": "E3",
+            "min_hours": 0,
+            "max_hours": 40,
+            "locations": [
+                "Location #1"
+            ],
+            "time_constraint": {
+                "Monday": {
+                    "Earliest": "17:00:00",
+                    "Latest": "22:00:00"
+                },
+                "Tuesday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Wednesday": {
+                    "Earliest": "17:00:00",
+                    "Latest": "22:00:00"
+                },
+                "Thursday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Friday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Saturday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Sunday": {
+                    "Earliest": null,
+                    "Latest": null
+                }
+            }
+        },
+        {
+            "cpr": "746848",
+            "name": "E4",
+            "min_hours": 0,
+            "max_hours": 40,
+            "locations": [
+                "Location #1"
+            ],
+            "time_constraint": {
+                "Monday": {
+                    "Earliest": "00:00:00",
+                    "Latest": "23:59:59"
+                },
+                "Tuesday": {
+                    "Earliest": "00:00:00",
+                    "Latest": "23:59:59"
+                },
+                "Wednesday": {
+                    "Earliest": "00:00:00",
+                    "Latest": "23:59:59"
+                },
+                "Thursday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Friday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Saturday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Sunday": {
+                    "Earliest": null,
+                    "Latest": null
+                }
+            }
+        }
+    ]
+}

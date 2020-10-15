@@ -1,22 +1,129 @@
 {
-
-    "shifts" : [
-        {"day" : "Monday", "startTime" : "16:30", "endTime" : "22:00", "location" : "Location #1", "employee" : null},
-        {"day" : "Monday", "startTime" : "16:30", "endTime" : "22:30", "location" : "Location #1", "employee" : null},
-        {"day" : "Monday", "startTime" : "17:00", "endTime" : "22:00", "location" : "Location #1", "employee" : null},
-        {"day" : "Tuesday", "startTime" : "16:45", "endTime" : "22:00", "location" : "Location #1", "employee" : null},
-        {"day" : "Tuesday", "startTime" : "16:45", "endTime" : "22:30", "location" : "Location #1", "employee" : null},
-        {"day" : "Tuesday", "startTime" : "17:30", "endTime" : "22:00", "location" : "Location #1", "employee" : null},
-        {"day" : "Wednesday", "startTime" : "16:45", "endTime" : "22:00", "location" : "Location #1", "employee" : null},
-        {"day" : "Wednesday", "startTime" : "16:45", "endTime" : "22:00", "location" : "Location #1", "employee" : null},
-        {"day" : "Wednesday", "startTime" : "17:30", "endTime" : "22:00", "location" : "Location #1", "employee" : null},
-        {"day" : "Thursday", "startTime" : "16:45", "endTime" : "22:00", "location" : "Location #1", "employee" : null},
-        {"day" : "Thursday", "startTime" : "16:45", "endTime" : "22:30", "location" : "Location #1", "employee" : null},
-        {"day" : "Thursday", "startTime" : "17:30", "endTime" : "22:00", "location" : "Location #1", "employee" : null}
+    "shifts": [
+        {
+            "day": "Monday",
+            "startTime": "16:30",
+            "endTime": "22:00",
+            "location": "Location #1",
+            "employee": null
+        },
+        {
+            "day": "Monday",
+            "startTime": "16:30",
+            "endTime": "22:30",
+            "location": "Location #1",
+            "employee": null
+        },
+        {
+            "day": "Monday",
+            "startTime": "17:00",
+            "endTime": "22:00",
+            "location": "Location #1",
+            "employee": null
+        },
+        {
+            "day": "Tuesday",
+            "startTime": "16:45",
+            "endTime": "22:00",
+            "location": "Location #1",
+            "employee": null
+        },
+        {
+            "day": "Tuesday",
+            "startTime": "16:45",
+            "endTime": "22:30",
+            "location": "Location #1",
+            "employee": null
+        },
+        {
+            "day": "Tuesday",
+            "startTime": "17:30",
+            "endTime": "22:00",
+            "location": "Location #1",
+            "employee": null
+        },
+        {
+            "day": "Wednesday",
+            "startTime": "16:45",
+            "endTime": "22:00",
+            "location": "Location #1",
+            "employee": null
+        },
+        {
+            "day": "Wednesday",
+            "startTime": "16:45",
+            "endTime": "22:00",
+            "location": "Location #1",
+            "employee": null
+        },
+        {
+            "day": "Wednesday",
+            "startTime": "17:30",
+            "endTime": "22:00",
+            "location": "Location #1",
+            "employee": null
+        },
+        {
+            "day": "Thursday",
+            "startTime": "16:45",
+            "endTime": "22:00",
+            "location": "Location #1",
+            "employee": null
+        },
+        {
+            "day": "Thursday",
+            "startTime": "16:45",
+            "endTime": "22:30",
+            "location": "Location #1",
+            "employee": null
+        },
+        {
+            "day": "Thursday",
+            "startTime": "17:30",
+            "endTime": "22:00",
+            "location": "Location #1",
+            "employee": null
+        }
     ],
-
-    "employees" : [
-        
+    "employees": [
+        {
+            "cpr": "1233445",
+            "name": "John",
+            "min_hours": 3,
+            "max_hours": 5,
+            "locations": [
+                "Location #1"
+            ],
+            "time_constraint": {
+                "Monday": {
+                    "Earliest": "15:00:00",
+                    "Latest": "22:30:00"
+                },
+                "Tuesday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Wednesday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Thursday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Friday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Saturday": {
+                    "Earliest": null,
+                    "Latest": null
+                },
+                "Sunday": {
+                    "Earliest": null,
+                    "Latest": null
+                }
+            }
+        }
     ]
-
 }
