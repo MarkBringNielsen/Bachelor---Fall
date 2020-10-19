@@ -1,4 +1,5 @@
-import datetime
+from datetime import datetime, timedelta
+from shift import shift
 
 
 class employee():
@@ -10,6 +11,7 @@ class employee():
         self.__max_hours = max_hours
         self.__locations = locations
         self.__time_constraint = time_constraint
+        self.__shifts = []
         if time_constraint is None: self.default_time_constraint()
 
     
@@ -21,3 +23,40 @@ class employee():
                                     'Friday'    : {'Earliest' : None, 'Latest' : None},
                                     'Saturday'  : {'Earliest' : None, 'Latest' : None},
                                     'Sunday'    : {'Earliest' : None, 'Latest' : None}}
+
+    def available_for_shift(self, shift):
+        if self.get_assigned_hours() > self.__max_hours:
+            return False
+
+        if shift.get_location not in self.__locations:
+            return False
+
+        if not self.__fits_time_constraint:
+            return False
+
+
+        return True
+
+    def get_assigned_hours(self):
+        hours = 0
+        for shift in self.__shifts:
+            hours += shift.get_duration()
+
+        return hours
+
+    def assign_shift(self, shift):
+        self.__shifts.append(shift)
+
+    def assign_shifts(self, shifts):
+        self.__shifts.extend(shifts)
+
+    def get_shifts(self):
+        return self.__shifts
+
+    def __fits_time_constraint(self, shift):
+        early = self.__time_constraint[shift.get_day()]['Earliest']
+        late = self.__time_constraint[shift.get_day()]['Latest']
+        if early is None and late is None or early > shift.get_start_time() or late < shift.get_end_time():
+            return False
+
+        return True
