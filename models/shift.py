@@ -1,6 +1,6 @@
 import datetime
 
-class shift():
+class Shift:
     __id = None
     __start_time = None
     __end_time = None
@@ -8,7 +8,7 @@ class shift():
     __employee = None
     __day = None
 
-    def __init__(self, day, start, end, location, identitier, employee=None):
+    def __init__(self, day, start, end, location, employee=None):
         self.__start_time = start
         self.__end_time = end
         self.__location = location

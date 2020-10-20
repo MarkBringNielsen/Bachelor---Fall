@@ -1,8 +1,8 @@
 from datetime import datetime, timedelta
-from shift import shift
+from models.shift import Shift
 
 
-class employee():
+class Employee:
 
     def __init__(self, cpr=None, name=None, min_hours=None, max_hours=None, locations=[], time_constraint=None):
         self.__cpr = cpr
