@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from models.shift import Shift
+from shift import Shift
 
 
 class Employee:
@@ -12,17 +12,17 @@ class Employee:
         self.__locations = locations
         self.__time_constraint = time_constraint
         self.__shifts = []
-        if time_constraint is None: self.default_time_constraint()
+        if time_constraint is None: self.default_time_constraint() else: self.__constraint_to_datetime()
 
     
     def default_time_constraint(self):
-        self.__time_constraint = {  'Monday'    : {'Earliest' : None, 'Latest' : None},
-                                    'Tuesday'   : {'Earliest' : None, 'Latest' : None},
-                                    'Wednesday' : {'Earliest' : None, 'Latest' : None},
-                                    'Thursday'  : {'Earliest' : None, 'Latest' : None},
-                                    'Friday'    : {'Earliest' : None, 'Latest' : None},
-                                    'Saturday'  : {'Earliest' : None, 'Latest' : None},
-                                    'Sunday'    : {'Earliest' : None, 'Latest' : None}}
+        self.__time_constraint = {  'Monday'    : {'Earliest' : '00:00:00', 'Latest' : '23:59:59'},
+                                    'Tuesday'   : {'Earliest' : '00:00:00', 'Latest' : '23:59:59'},
+                                    'Wednesday' : {'Earliest' : '00:00:00', 'Latest' : '23:59:59'},
+                                    'Thursday'  : {'Earliest' : '00:00:00', 'Latest' : '23:59:59'},
+                                    'Friday'    : {'Earliest' : '00:00:00', 'Latest' : '23:59:59'},
+                                    'Saturday'  : {'Earliest' : '00:00:00', 'Latest' : '23:59:59'},
+                                    'Sunday'    : {'Earliest' : '00:00:00', 'Latest' : '23:59:59'}}
 
     def available_for_shift(self, shift):
         if self.get_assigned_hours() > self.__max_hours:
@@ -60,3 +60,10 @@ class Employee:
             return False
 
         return True
+
+    def __constraint_to_datetime(self):
+        for day in self.__time_constraint:
+            if self.__time_constraint[day]['Earliest'] is not None: 
+                self.__time_constraint[day]['Earliest'] = datetime.strptime(self.__time_constraint[day]['Earliest'])
+            if self.__time_constraint[day]['Latest'] is not None:
+                self.__time_constraint[day]['Latest'] = datetime.strptime(self.__time_constraint[day]['Latest'])
