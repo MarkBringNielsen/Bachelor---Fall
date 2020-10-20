@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from shift import Shift
+from models.shift import Shift
 
 
 class Employee:
@@ -12,7 +12,10 @@ class Employee:
         self.__locations = locations
         self.__time_constraint = time_constraint
         self.__shifts = []
-        if time_constraint is None: self.default_time_constraint() else: self.__constraint_to_datetime()
+        if time_constraint is None: 
+            self.default_time_constraint() 
+        else: 
+            self.__constraint_to_datetime()
 
     
     def default_time_constraint(self):
@@ -64,6 +67,6 @@ class Employee:
     def __constraint_to_datetime(self):
         for day in self.__time_constraint:
             if self.__time_constraint[day]['Earliest'] is not None: 
-                self.__time_constraint[day]['Earliest'] = datetime.strptime(self.__time_constraint[day]['Earliest'])
+                self.__time_constraint[day]['Earliest'] = datetime.strptime(self.__time_constraint[day]['Earliest'], '%H:%M:%S')
             if self.__time_constraint[day]['Latest'] is not None:
-                self.__time_constraint[day]['Latest'] = datetime.strptime(self.__time_constraint[day]['Latest'])
+                self.__time_constraint[day]['Latest'] = datetime.strptime(self.__time_constraint[day]['Latest'], '%H:%M:%S')
