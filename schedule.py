@@ -20,4 +20,10 @@ class cs_schedule():
         self.__shifts = shifts
         self.__employees = employees
 
+
+    def schedule(self):
+        
+
+        return None
+
     
