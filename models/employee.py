@@ -3,8 +3,15 @@ from models.shift import Shift
 
 
 class Employee:
-
-    def __init__(self, cpr=None, name=None, min_hours=None, max_hours=None, locations=[], time_constraint=None):
+    def __init__(
+        self,
+        cpr=None,
+        name=None,
+        min_hours=None,
+        max_hours=None,
+        locations=[],
+        time_constraint=None,
+    ):
         self.__cpr = cpr
         self.__name = name
         self.__min_hours = min_hours
@@ -12,20 +19,21 @@ class Employee:
         self.__locations = locations
         self.__time_constraint = time_constraint
         self.__shifts = []
-        if time_constraint is None: 
-            self.default_time_constraint() 
-        else: 
+        if time_constraint is None:
+            self.default_time_constraint()
+        else:
             self.__constraint_to_datetime()
 
-    
     def default_time_constraint(self):
-        self.__time_constraint = {  'Monday'    : {'Earliest' : '00:00:00', 'Latest' : '23:59:59'},
-                                    'Tuesday'   : {'Earliest' : '00:00:00', 'Latest' : '23:59:59'},
-                                    'Wednesday' : {'Earliest' : '00:00:00', 'Latest' : '23:59:59'},
-                                    'Thursday'  : {'Earliest' : '00:00:00', 'Latest' : '23:59:59'},
-                                    'Friday'    : {'Earliest' : '00:00:00', 'Latest' : '23:59:59'},
-                                    'Saturday'  : {'Earliest' : '00:00:00', 'Latest' : '23:59:59'},
-                                    'Sunday'    : {'Earliest' : '00:00:00', 'Latest' : '23:59:59'}}
+        self.__time_constraint = {
+            "Monday": {"Earliest": "00:00:00", "Latest": "23:59:59"},
+            "Tuesday": {"Earliest": "00:00:00", "Latest": "23:59:59"},
+            "Wednesday": {"Earliest": "00:00:00", "Latest": "23:59:59"},
+            "Thursday": {"Earliest": "00:00:00", "Latest": "23:59:59"},
+            "Friday": {"Earliest": "00:00:00", "Latest": "23:59:59"},
+            "Saturday": {"Earliest": "00:00:00", "Latest": "23:59:59"},
+            "Sunday": {"Earliest": "00:00:00", "Latest": "23:59:59"},
+        }
 
     def available_for_shift(self, shift):
         if self.get_assigned_hours() > self.__max_hours:
@@ -37,11 +45,13 @@ class Employee:
         if not self.__fits_time_constraint:
             return False
 
-
         return True
 
+    def get_name(self):
+        return self.__name
+
     def get_assigned_hours(self):
-        hours = 0
+        hours = timedelta(hours=0)
         for shift in self.__shifts:
             hours += shift.get_duration()
 
@@ -57,16 +67,55 @@ class Employee:
         return self.__shifts
 
     def __fits_time_constraint(self, shift):
-        early = self.__time_constraint[shift.get_day()]['Earliest']
-        late = self.__time_constraint[shift.get_day()]['Latest']
-        if early is None and late is None or early > shift.get_start_time() or late < shift.get_end_time():
+        early = self.__time_constraint[shift.get_day()]["Earliest"]
+        late = self.__time_constraint[shift.get_day()]["Latest"]
+        if (
+            early is None
+            and late is None
+            or early > shift.get_start_time()
+            or late < shift.get_end_time()
+        ):
             return False
 
         return True
 
     def __constraint_to_datetime(self):
         for day in self.__time_constraint:
-            if self.__time_constraint[day]['Earliest'] is not None: 
-                self.__time_constraint[day]['Earliest'] = datetime.strptime(self.__time_constraint[day]['Earliest'], '%H:%M:%S')
-            if self.__time_constraint[day]['Latest'] is not None:
-                self.__time_constraint[day]['Latest'] = datetime.strptime(self.__time_constraint[day]['Latest'], '%H:%M:%S')
+            if self.__time_constraint[day]["Earliest"] is not None:
+                self.__time_constraint[day]["Earliest"] = datetime.strptime(
+                    self.__time_constraint[day]["Earliest"], "%H:%M:%S"
+                )
+            if self.__time_constraint[day]["Latest"] is not None:
+                self.__time_constraint[day]["Latest"] = datetime.strptime(
+                    self.__time_constraint[day]["Latest"], "%H:%M:%S"
+                )
+
+    def assess_fitness_of_shifts(self):
+
+        constraints = 0
+        constraints_met = 0
+        hours_assigned = self.get_assigned_hours()
+
+        if self.__min_hours is not None:
+            constraints+=1
+            if hours_assigned > self.__min_hours:
+                constraints_met+=1
+
+        if self.__max_hours is not None:
+            constraints+=1
+            if hours_assigned < self.__max_hours:
+                constraints_met+=1
+
+        times = []
+        for td in [self.__min_hours, self.__max_hours, hours_assigned]:
+            hours = int(td.total_seconds() // 3600)
+            minutes = int((td.total_seconds() // 60) % 60)
+            times.append(f'{hours}:{minutes}')
+
+        return {
+            "name": self.__name,
+            "least": times[0],
+            "most": times[1],
+            "hours": times[2],
+            "constraints_met": f'{constraints_met}/{constraints}',
+        }

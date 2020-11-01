@@ -30,3 +30,10 @@ class Shift:
 
     def get_duration(self):
         return self.__end_time - self.__start_time
+
+    def get_employee(self):
+        return self.__employee
+
+    def assign_employee(self, employee):
+        self.__employee = employee
+        employee.assign_shift(self)

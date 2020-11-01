@@ -2,64 +2,64 @@
     "shifts": [
         {
             "day": "Monday",
-            "startTime": "16:15",
-            "endTime": "22:00",
+            "startTime": "16:15:00",
+            "endTime": "22:00:00",
             "location": "Location #1",
             "employee": null
         },
         {
             "day": "Monday",
-            "startTime": "17:00",
-            "endTime": "22:00",
+            "startTime": "17:00:00",
+            "endTime": "22:00:00",
             "location": "Location #1",
             "employee": null
         },
         {
             "day": "Monday",
-            "startTime": "18:00",
-            "endTime": "22:30",
+            "startTime": "18:00:00",
+            "endTime": "22:30:00",
             "location": "Location #1",
             "employee": null
         },
         {
             "day": "Tuesday",
-            "startTime": "16:15",
-            "endTime": "22:00",
+            "startTime": "16:15:00",
+            "endTime": "22:00:00",
             "location": "Location #1",
             "employee": null
         },
         {
             "day": "Tuesday",
-            "startTime": "17:00",
-            "endTime": "22:00",
+            "startTime": "17:00:00",
+            "endTime": "22:00:00",
             "location": "Location #1",
             "employee": null
         },
         {
             "day": "Tuesday",
-            "startTime": "18:00",
-            "endTime": "22:30",
+            "startTime": "18:00:00",
+            "endTime": "22:30:00",
             "location": "Location #1",
             "employee": null
         },
         {
             "day": "Wednesday",
-            "startTime": "16:15",
-            "endTime": "22:00",
+            "startTime": "16:15:00",
+            "endTime": "22:00:00",
             "location": "Location #1",
             "employee": null
         },
         {
             "day": "Wednesday",
-            "startTime": "17:00",
-            "endTime": "22:00",
+            "startTime": "17:00:00",
+            "endTime": "22:00:00",
             "location": "Location #1",
             "employee": null
         },
         {
             "day": "Wednesday",
-            "startTime": "18:00",
-            "endTime": "22:30",
+            "startTime": "18:00:00",
+            "endTime": "22:30:00",
             "location": "Location #1",
             "employee": null
         }
@@ -108,7 +108,7 @@
             "cpr": "12465445",
             "name": "E2",
             "min_hours": 0,
-            "max_hours": 40,
+            "max_hours": 37,
             "locations": [
                 "Location #1"
             ],
