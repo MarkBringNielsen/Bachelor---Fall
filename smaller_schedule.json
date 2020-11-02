@@ -75,12 +75,12 @@
             ],
             "time_constraint": {
                 "Monday": {
-                    "Earliest": null,
+                    "Earliest": "00:00:00",
                     "Latest": "22:00:00"
                 },
                 "Tuesday": {
                     "Earliest": "18:00:00",
-                    "Latest": null
+                    "Latest": "23:59:59"
                 },
                 "Wednesday": {
                     "Earliest": null,
@@ -122,7 +122,7 @@
                     "Latest": "22:00:00"
                 },
                 "Wednesday": {
-                    "Earliest": null,
+                    "Earliest": "00:00:00",
                     "Latest": "17:00:00"
                 },
                 "Thursday": {

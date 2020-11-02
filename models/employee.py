@@ -106,6 +106,57 @@ class Employee:
             if hours_assigned < self.__max_hours:
                 constraints_met+=1
 
+
+
+        days_with_shifts = []
+        for shift in self.__shifts:
+
+            if shift.get_location() in self.__locations:
+                constraints+=1
+                constraints_met+=1
+            else:
+                constraints+=1
+                
+
+            days_with_shifts.append(shift.get_day())
+
+            early = self.__time_constraint[shift.get_day()]["Earliest"]
+            late = self.__time_constraint[shift.get_day()]["Latest"]
+
+            if early is None and late is None: #If employee has a shift when they should have had none
+                constraints+=1
+            else: 
+                if shift.get_start_time() < early: #If shift is too early
+                    constraints+=1
+                else:
+                    constraints+=1
+                    constraints_met+=1
+
+                if shift.get_end_time() > late: #If shift is too late
+                    constraints+=1
+                else:
+                    constraints+=1
+                    constraints_met+=1
+
+        #days without shifts but has constraints
+        for day in self.__time_constraint:
+            if day in days_with_shifts:
+                continue
+            early = self.__time_constraint[shift.get_day()]["Earliest"]
+            late = self.__time_constraint[shift.get_day()]["Latest"]
+            if early is None and late is None:
+                constraints+=1
+                constraints_met+=1
+                continue
+            if early > datetime.strptime('00:00:00', "%H:%M:%S"):
+                constraints+=1
+                constraints_met+=1
+            if late < datetime.strptime('23:59:59', "%H:%M:%S"):
+                constraints+=1
+                constraints_met+=1
+
+            
+
         times = []
         for td in [self.__min_hours, self.__max_hours, hours_assigned]:
             hours = int(td.total_seconds() // 3600)
@@ -118,4 +169,5 @@ class Employee:
             "most": times[1],
             "hours": times[2],
             "constraints_met": f'{constraints_met}/{constraints}',
+            "percentile" : constraints_met/constraints
         }

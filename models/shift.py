@@ -34,6 +34,9 @@ class Shift:
     def get_employee(self):
         return self.__employee
 
+    def get_day(self):
+        return self.__day
+
     def assign_employee(self, employee):
         self.__employee = employee
         employee.assign_shift(self)
