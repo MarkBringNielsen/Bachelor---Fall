@@ -12,7 +12,7 @@ class Schedule():
             shift.assign_employee(choice(self.__employees))
         return self.__shifts
 
-    def fulfilling_schedule(self, acceptable_percentile=0.9):
+    def fulfilling_schedule(self, acceptable_percentile=0.85):
         while True:
                 
             for shift in self.__shifts:

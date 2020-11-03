@@ -66,6 +66,9 @@ class Employee:
     def get_shifts(self):
         return self.__shifts
 
+    def remove_all_shifts(self):
+        self.__shifts.clear()
+
     def __fits_time_constraint(self, shift):
         early = self.__time_constraint[shift.get_day()]["Earliest"]
         late = self.__time_constraint[shift.get_day()]["Latest"]
