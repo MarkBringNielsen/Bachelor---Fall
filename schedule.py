@@ -59,8 +59,8 @@ class CS_schedule():
 
     def schedule(self, shifts, employees):
 
-        #if not shifts: #If list is empty something went wrong
-        #    return False
+        if not shifts: #If list is empty something went wrong
+            return False
 
         shift = shifts[0]
         domain = []
