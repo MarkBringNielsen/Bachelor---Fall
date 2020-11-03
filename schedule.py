@@ -1,5 +1,6 @@
 from random import choice
 import time
+from itertools import islice
 class Schedule():
 
     def __init__(self, shifts, employees):
@@ -30,7 +31,7 @@ class Schedule():
         return self.__shifts
 
 
-    def asses_success(self):
+    def assess_success(self):
         for schedule in self.__schedulers:
             print(schedule)
             
@@ -56,16 +57,44 @@ class CS_schedule():
         self.__employees = employees
 
 
-    def schedule(self):
+    def schedule(self, shifts, employees):
+
+        #if not shifts: #If list is empty something went wrong
+        #    return False
+
+        shift = shifts[0]
+        domain = []
+        for employee in employees:
+            if employee.available_for_shift(shift):
+                domain.append(employee)
+        if not domain:
+            return False
         
-        for shift in self.__shifts:
-            fringe = []
-            for employee in self.__employees:
-                if employee.available_for_shift(shift):
-                    fringe.append(employee)
+        #loop for checking if an employee path will succeed
+        for employee in domain:
+
+            shift.assign_employee(employee)
+
+            if len(shifts) <= 1:
+                return True
+            if self.schedule(shifts[1:],employees):
+                return True
+
+            employee.remove_shift(shift)
+        return False
+
+    def assess_success(self):
+        start_time = time.time()
+        success = 'success' if self.schedule(self.__shifts, self.__employees) else 'failure'
+        print(f'Time spent: {time.time() - start_time}')
+        print(f'Schedule was a {success}')
+        for employee in self.__employees:
+            print(employee.assess_fitness_of_shifts())
+        
 
 
 from datamanagement import load
 data = load()
 
-Schedule(data[0], data[1]).asses_success()
+#Schedule(data[0], data[1]).assess_success()
+CS_schedule(data[0], data[1]).assess_success()

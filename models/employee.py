@@ -39,10 +39,13 @@ class Employee:
         if self.get_assigned_hours() > self.__max_hours:
             return False
 
-        if shift.get_location not in self.__locations:
+        if shift.get_location() not in self.__locations:
             return False
 
-        if not self.__fits_time_constraint:
+        if not self.__fits_time_constraint(shift):
+            return False
+
+        if self.__already_working(shift):
             return False
 
         return True
@@ -53,7 +56,7 @@ class Employee:
     def get_assigned_hours(self):
         hours = timedelta(hours=0)
         for shift in self.__shifts:
-            hours += shift.get_duration()
+            hours = hours + shift.get_duration()
 
         return hours
 
@@ -69,18 +72,36 @@ class Employee:
     def remove_all_shifts(self):
         self.__shifts.clear()
 
+    def remove_shift(self, shift):
+        self.__shifts.remove(shift)
+
     def __fits_time_constraint(self, shift):
         early = self.__time_constraint[shift.get_day()]["Earliest"]
         late = self.__time_constraint[shift.get_day()]["Latest"]
         if (
-            early is None
-            and late is None
+            (early is None
+            and late is None)
             or early > shift.get_start_time()
             or late < shift.get_end_time()
         ):
             return False
 
         return True
+
+    def __already_working(self, shift):
+
+        for owned_shift in self.__shifts:
+            if owned_shift.get_day() != shift.get_day():
+                o_day = owned_shift.get_day()
+                s_day = shift.get_day()
+                same = owned_shift.get_day() == shift.get_day()
+                continue
+
+            if (owned_shift.get_start_time() <= shift.get_end_time()) and (owned_shift.get_end_time() >= shift.get_start_time()):
+                return True
+
+
+        return False
 
     def __constraint_to_datetime(self):
         for day in self.__time_constraint:
@@ -101,17 +122,18 @@ class Employee:
 
         if self.__min_hours is not None:
             constraints+=1
-            if hours_assigned > self.__min_hours:
+            if hours_assigned >= self.__min_hours:
                 constraints_met+=1
 
         if self.__max_hours is not None:
             constraints+=1
-            if hours_assigned < self.__max_hours:
+            if hours_assigned <= self.__max_hours:
                 constraints_met+=1
 
 
 
         days_with_shifts = []
+        
         for shift in self.__shifts:
 
             if shift.get_location() in self.__locations:
@@ -145,8 +167,8 @@ class Employee:
         for day in self.__time_constraint:
             if day in days_with_shifts:
                 continue
-            early = self.__time_constraint[shift.get_day()]["Earliest"]
-            late = self.__time_constraint[shift.get_day()]["Latest"]
+            early = self.__time_constraint[day]["Earliest"]
+            late = self.__time_constraint[day]["Latest"]
             if early is None and late is None:
                 constraints+=1
                 constraints_met+=1
@@ -159,7 +181,7 @@ class Employee:
                 constraints_met+=1
 
             
-
+        print(f'Days with shifts: {days_with_shifts}')
         times = []
         for td in [self.__min_hours, self.__max_hours, hours_assigned]:
             hours = int(td.total_seconds() // 3600)

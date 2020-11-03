@@ -29,7 +29,8 @@ class Shift:
         return self.__employee is not None
 
     def get_duration(self):
-        return self.__end_time - self.__start_time
+        duration = self.__end_time - self.__start_time
+        return duration
 
     def get_employee(self):
         return self.__employee
